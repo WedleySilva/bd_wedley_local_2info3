@@ -61,3 +61,27 @@ select nome, cpf, descricao_tipo, ds_logradouro_nome
 from cad_usuario, tipo_usuario, logradouro
 where cad_usuario.tipuser_cd = tipo_usuario.cod_tip_user and
 cad_usuario.log_cd_logradouro = logradouro.cd_logradouro;
+
+select * from pedidos;
+
+select nome, email, tel, cod_pedido, dtped, qtditem, descricao, preco_unit
+from cad_usuario, itemped, produto, pedidos
+where cad_usuario.cpf = pedidos.cad_usuario_cpf and
+pedidos.cod_pedido = itemped.ped_codpedidos and
+itemped.cod_itemp = produto.cod_produto and
+cad_usuario_cpf = 85763098123;
+
+select * from logradouro;
+
+select ds_logradouro_nome, ds_bairro_nome, ds_cidade_nome
+from logradouro, bairros, cidades, tipo_logradouro
+where bairros.cd_bairro = cidades.cd_cidade and
+logradouro.bairros_cd_bairro = bairros.cd_bairro and
+logradouro.log_cd_tip_log = tipo_logradouro.cd_tipo_logradouro and
+tipo_logradouro.log_cd_tip_log = 'praça' and
+tipo_logradouro.ds_cidade_nome = 'joinville';
+
+select pedidos, itemped.qtditem, produto.descricao, produto.preco_unit
+from pedidos, itemped, produto
+where pedidos = itemped.ped_codpedidos and
+itemped.;
