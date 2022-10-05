@@ -75,11 +75,11 @@ select * from logradouro;
 
 select ds_logradouro_nome, ds_bairro_nome, ds_cidade_nome
 from logradouro, bairros, cidades, tipo_logradouro
-where bairros.cd_bairro = cidades.cd_cidade and
-logradouro.bairros_cd_bairro = bairros.cd_bairro and
+where logradouro.bairros_cd_bairro = bairros.cd_bairro and
+bairros.cidade_cd_cidade = cidade_cd_cidade and
 logradouro.log_cd_tip_log = tipo_logradouro.cd_tipo_logradouro and
-tipo_logradouro.log_cd_tip_log = 'praça' and
-tipo_logradouro.ds_cidade_nome = 'joinville';
+tipo_logradouro.desc_tip_log = 'praça' and
+cidades.ds_cidade_nome = 'joinville';
 
 select pedidos, itemped.qtditem, produto.descricao, produto.preco_unit
 from pedidos, itemped, produto
