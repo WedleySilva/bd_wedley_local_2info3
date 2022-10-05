@@ -81,7 +81,10 @@ logradouro.log_cd_tip_log = tipo_logradouro.cd_tipo_logradouro and
 tipo_logradouro.desc_tip_log = 'praça' and
 cidades.ds_cidade_nome = 'joinville';
 
-select pedidos, itemped.qtditem, produto.descricao, produto.preco_unit
+
+
+select cod_pedido, cad_usuario_cpf, dtped, faturado, naofaturado, dtentrega, qtditem, descricao, preco_unit
 from pedidos, itemped, produto
-where pedidos = itemped.ped_codpedidos and
-itemped.;
+where pedidos.cod_pedido = itemped.ped_codpedidos and
+itemped.prod_cod_produto = produto.cod_produto and
+produto.preco_unit >= 1.20 and produto.preco_unit <= 8.00;
