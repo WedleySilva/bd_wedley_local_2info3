@@ -139,7 +139,7 @@ select avg(preco_unit) from produto;
 
 -- count( ) --
 
-select count(cod_produtot) from produto;
+select count(cod_produto) from produto;
 
 -- sum( ) --
 
@@ -154,7 +154,7 @@ group by descricao_tipo;
 
 -- order by --
 
-select descricao_tipo as Tipo_Usuario, count(tipuser_cd) numero
+select descricao_tipo as Tipo_Usuario, count(tipuser_cd) numero -- "as" é um metodo de segurança para executar a ação em versões mais antigas -- 
 from cad_usuario, tipo_usuario
 where cad_usuario.tipuser_cd = tipo_usuario.cod_tip_user
 group by descricao_tipo order by numero;
@@ -167,4 +167,46 @@ select round(avg(preco_unit),2) from produto;
 
 select descricao from produto
 where preco_unit = (select min(preco_unit) from produto);
+
+-- Buscar o a descrição do produto pelo preço desejado --
+
+select descricao from produto
+where preco_unit = 60.00;
+
+-- Buscar o a descrição do produto pelo maior preço via subconsulta --
+
+select descricao from produto
+where preco_unit = (select max(preco_unit) from produto);
+
+-- Buscar o a descrição do produto pelo menor preço via subconsulta --
+
+select descricao from produto
+where preco_unit = (select min(preco_unit) from produto);
+
+-- Quantos usuários existem? --
+
+select count(cpf) from cad_usuario;
+
+select nome, descricao_tipo
+from cad_usuario, tipo_usuario
+where cad_usuario.tipuser_cd = tipo_usuario.cod_tip_user;
+
+-- Quantos usuários existem de cada tipo? --
+
+select descricao_tipo, count(tipuser_cd) codigo_tipo -- "codigo_tipo" é um apelido necessário para executar a ação --
+from cad_usuario, tipo_usuario
+where cad_usuario.tipuser_cd = tipo_usuario.cod_tip_user
+group by descricao_tipo; -- "descricao_tipo" é o parâmetro de agrupamento, que no caso é um atributo --
+
+-- Ordenando os grupos por um parâmetro --
+
+select descricao_tipo as Tipo_Usuario, count(tipuser_cd) codigo_tipo 
+from cad_usuario, tipo_usuario
+where cad_usuario.tipuser_cd = tipo_usuario.cod_tip_user
+group by descricao_tipo order by descricao_tipo desc; -- "asc" e "desc" são maneiras de ordenar e "descricao_tipo" pode ser alterado por outro atributo ou numero, letra... --
+
+-- Usando round para organizar a posição e arredondar--
+
+select round(avg(preco_unit),2) from produto; -- o valor "2" pode ser trocado por outros números, incluindo o "0" --
+
 
