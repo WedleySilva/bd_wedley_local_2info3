@@ -209,4 +209,14 @@ group by descricao_tipo order by descricao_tipo desc; -- "asc" e "desc" são man
 
 select round(avg(preco_unit),2) from produto; -- o valor "2" pode ser trocado por outros números, incluindo o "0" --
 
+-- Exercícios dia 19/10 🍷️🗿️ --
 
+-- Atividade 1 - CRUC que retorne: nome dos usuários e a quantidade de pedidos realizados por cada usuário --
+
+-- Atividade 2 - CRUC que retorne: nome do usuário e o valor total do pedido, filtrando por um código de pedido válido --
+
+-- Atividade 3 - CRUC que retorne: a quantidade de logradouros filtrando pela sigla do estado -- 
+
+-- Atividade 4 - CRUC que retorne: a quantidade de bairros agrupando pela sigla do estado -- 
+
+-- Atividade 5 - CRUC que retorne: preço total dos pedidos agrupando pelo código dos pedidos-- 
