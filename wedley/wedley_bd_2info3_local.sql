@@ -119,4 +119,52 @@ select descricao, preco_unit, preco_emb from produto where qtd_emb <= 12;
 
 select descricao, preco_unit, preco_unit, ((preco_unit + preco_unit / 100) * 0.5) as preco_somado from produto;
 
+		-- Conteúdo dia 19/10 --
+
+ -- Funções de Agregação --
+
+-- max( ) --
+
+select * from produto;
+
+select max(preco_unit) from produto;
+
+-- min( ) --
+
+select min(preco_unit) from produto;
+
+-- avg( ) --
+
+select avg(preco_unit) from produto;
+
+-- count( ) --
+
+select count(cod_produtot) from produto;
+
+-- sum( ) --
+
+select sum(preco_unit) from produto;
+
+-- group by --
+
+select descricao_tipo as Tipo_Usuario, count(tipuser_cd) numero
+from cad_usuario, tipo_usuario
+where cad_usuario.tipuser_cd = tipo_usuario.cod_tip_user
+group by descricao_tipo;
+
+-- order by --
+
+select descricao_tipo as Tipo_Usuario, count(tipuser_cd) numero
+from cad_usuario, tipo_usuario
+where cad_usuario.tipuser_cd = tipo_usuario.cod_tip_user
+group by descricao_tipo order by numero;
+
+-- round( , ) --
+
+select round(avg(preco_unit),2) from produto;
+
+-- Consulta aninhada ou subconsulta --
+
+select descricao from produto
+where preco_unit = (select min(preco_unit) from produto);
 
