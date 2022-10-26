@@ -235,7 +235,17 @@ select * from produto where cod_produto in(4,11);
 
 -- Atividade 3 - CRUC que retorne: a quantidade de logradouros filtrando pela sigla do estado -- 
 
--- Atividade 4 - CRUC que retorne: a quantidade de bairros agrupando pela sigla do estado -- 
+select ds_uf_sigla, count(cd_logradouro)
+from logradouro, cidades, uf, bairros
+where logradouro.bairros_cd_bairro = bairros_cd_bairro and
+bairros.cidade_cd_cidade = cidade_cd_cidade and
+cidades.uf_cd_uf = uf.cd_uf group by ds_uf_sigla;
+
+-- Atividade 4 - CRUC que retorne: a quantidade de bairros agrupando pela sigla do estado --select ds_uf_sigla, count(cd_logradouro)
+select ds_uf_sigla, count(cd_bairro)
+from cidades, uf, bairros
+where bairros.cidade_cd_cidade = cidade_cd_cidade and
+cidades.uf_cd_uf = uf.cd_uf group by ds_uf_sigla;
 
 -- Atividade 5 - CRUC que retorne: preço total dos pedidos agrupando pelo código dos pedidos-- 
 
