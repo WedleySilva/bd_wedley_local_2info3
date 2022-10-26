@@ -219,7 +219,7 @@ where cad_usuario.cpf = pedidos.cad_usuario_cpf group by nome;
 
 -- Atividade 2 - CRUC que retorne: nome do usuário e o valor total do pedido, filtrando por um código de pedido válido --
 
-select nome, sum(preco_unit * qtditem  )
+select nome, sum(preco_unit * qtditem)
 from cad_usuario, pedidos, produto, itemped
 where cad_usuario.cpf = pedidos.cad_usuario_cpf and
 pedidos.cod_pedido - itemped.ped_codpedidos and
@@ -242,6 +242,7 @@ bairros.cidade_cd_cidade = cidade_cd_cidade and
 cidades.uf_cd_uf = uf.cd_uf group by ds_uf_sigla;
 
 -- Atividade 4 - CRUC que retorne: a quantidade de bairros agrupando pela sigla do estado --select ds_uf_sigla, count(cd_logradouro)
+
 select ds_uf_sigla, count(cd_bairro)
 from cidades, uf, bairros
 where bairros.cidade_cd_cidade = cidade_cd_cidade and
@@ -249,8 +250,26 @@ cidades.uf_cd_uf = uf.cd_uf group by ds_uf_sigla;
 
 -- Atividade 5 - CRUC que retorne: preço total dos pedidos agrupando pelo código dos pedidos-- 
 
+select cod_pedido, sum(preco_unit * qtditem)
+from cad_usuario, pedidos, produto, itemped
+where pedidos.cod_pedido - itemped.ped_codpedidos and
+itemped.prod_cod_produto = produto.cod_produto group by cod_pedido;
 
--- Exercícios dia 26/10 --
+-- Inserindo vários items no pedido da Atividade 5 --
+
+select * from itemped; 
+insert into itemped(qtd_itempe, ped_codpedidos, Prod_cod_produto)
+values 
+(52,12,87),
+(12,12,125),
+(10,12,69),
+(7,12,23),
+(29,12,848);
+select * from itemped(qtditem, ped_codpedidos, prod_cod_produtos) -- Aqui conferimos se existem esse números de pedidos --
+
+-- Ao executar esse insert, inserimos pedidos no cod de número 12 --  
+
+-- Exercícios dia 26/10 🦀️ tururu --
 
 -- Atividade 1 - CRUC que retorne: descrição do produto e a quantidade de vezes que ele foi comprado, agrupando pela descrição do produto -- 
 
