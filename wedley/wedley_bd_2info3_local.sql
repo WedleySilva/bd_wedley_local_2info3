@@ -213,10 +213,37 @@ select round(avg(preco_unit),2) from produto; -- o valor "2" pode ser trocado po
 
 -- Atividade 1 - CRUC que retorne: nome dos usuários e a quantidade de pedidos realizados por cada usuário --
 
+select nome, count(cad_usuario_cpf)
+from cad_usuario, pedidos 
+where cad_usuario.cpf = pedidos.cad_usuario_cpf group by nome;                  
+
 -- Atividade 2 - CRUC que retorne: nome do usuário e o valor total do pedido, filtrando por um código de pedido válido --
+
+select nome, sum(preco_unit * qtditem  )
+from cad_usuario, pedidos, produto, itemped
+where cad_usuario.cpf = pedidos.cad_usuario_cpf and
+pedidos.cod_pedido - itemped.ped_codpedidos and
+itemped.prod_cod_produto = produto.cod_produto and
+pedidos.cod_pedido =4  group by nome;
+
+-- Tirando a prova real da Atividade 2 --
+
+Select * from pedidos;
+select * from cad_usuario where cpf = '63748762435';
+select * from itemped where ped_codpedidos =4;
+select * from produto where cod_produto in(4,11);
 
 -- Atividade 3 - CRUC que retorne: a quantidade de logradouros filtrando pela sigla do estado -- 
 
 -- Atividade 4 - CRUC que retorne: a quantidade de bairros agrupando pela sigla do estado -- 
 
 -- Atividade 5 - CRUC que retorne: preço total dos pedidos agrupando pelo código dos pedidos-- 
+
+
+-- Exercícios dia 26/10 --
+
+-- Atividade 1 - CRUC que retorne: descrição do produto e a quantidade de vezes que ele foi comprado, agrupando pela descrição do produto -- 
+
+-- Atividade 2 - CRUC que retorne: quantidade de pedidos agrupando pela sigla da UF --
+
+-- Atividade 3 - CRUC que retorne: quantidade de pedidos agrupando pela sigla da UF -- 
